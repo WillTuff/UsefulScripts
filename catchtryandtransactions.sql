@@ -1,0 +1,25 @@
+USE -- ENTER DATABASE NAME
+GO
+
+BEGIN TRY
+	BEGIN TRANSACTION
+		
+	-- ENTER CODE
+	
+	-- Checks how many rows should be affected
+	IF ROWCOUNT_BIG() <> 1
+	RAISERROR('wrong number of updated rows',11,1)
+
+	COMMIT TRANSACTION
+
+	PRINT --ENTER RELEVANT MESSAGE
+
+END TRY
+
+BEGIN CATCH
+
+  ROLLBACK TRANSACTION
+	PRINT 'error:'
+	PRINT error_message()
+
+END CATCH
